@@ -1,0 +1,29 @@
+version: 1
+metadata:
+  org: Open Source Pickle
+  environment: prod
+  updated_at: "2025-08-27T12:00:00Z"
+
+roles:
+  - name: support_engineer
+    description: Tier-2 IT support with limited admin actions
+    permissions:
+      - resource: devices/*
+        actions: [read, update]
+      - resource: identity/users
+        actions: [read]
+
+  - name: iam_admin
+    description: Full identity administration
+    permissions:
+      - resource: identity/*
+        actions: [read, create, update, delete]
+
+assignments:
+  - principal_type: user
+    principal_id: "terrance.pickle@opensourcepickle.com"
+    roles: [support_engineer, iam_admin]
+
+  - principal_type: group
+    principal_id: "it-support@opensourcepickle.com"
+    roles: [support_engineer]
